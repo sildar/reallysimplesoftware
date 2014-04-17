@@ -1,3 +1,4 @@
 help/
 *.pyc
 __pycache__
+docs/build
