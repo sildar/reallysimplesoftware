@@ -54,12 +54,6 @@ class Entry(object):
                 self.content = entry['summary']
             
 
-    def setread(self, isread=True):
-        self._read = isread
-
-    def isread(self):
-        return self._read
-
     def __eq__(self, other):
         sameTitle = self.title == other.title
         sameDate = self.published == other.published
