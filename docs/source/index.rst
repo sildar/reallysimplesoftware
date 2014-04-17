@@ -16,17 +16,17 @@ This is a RSS reader that have three primary goals :
   * Allow you to store those you want to keep
   * Allow you to watch videos inside the RSS reader
 
-Contents:
 
 .. toctree::
    :maxdepth: 2
 
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. Indices and tables
+.. ==================
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
 
