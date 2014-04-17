@@ -1,16 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+:date: Created on 17 April 2014
+:author: Remi Bois
+"""
+
 import feedparser
 import sqlite3
-import util
+from reallysimplesoftware import util
 
 class RSSThread(object):
     """
-    Represents a thread.
+    Represents a RSS thread.
     """
     
     def __init__(self, url):
+        """
+        Reads a RSS feed and updates the thread entries.
+
+        Arguments:
+
+            url
+                The URL to fetch to get the feed
+        """
         self.url = url
         self.entries = []
         feed = feedparser.parse(url)
@@ -23,7 +36,7 @@ class RSSThread(object):
         print(self.name)
         
         for entry in self.entries:
-            if not entry.isread():
+            if not entry.read:
                 print("\t" + entry.title + '\t' + entry.published)
                 print("\t\t" + str(entry.content) + "\n\n")
 
@@ -40,18 +53,26 @@ class Entry(object):
     Represents a RSS entry. A single web page.
     """
 
-    def __init__(self,entry):
-        self._read = False
-        self.title = entry['title']
-        self.published = entry['published']
-        self.url = entry['link']
-        if 'content' in entry:
-            self.content = entry['content']
+    def __init__(self, entrydata):
+        """
+        Stocks content of a single entry of a RSS feed.
+
+        Arguments:
+
+            entrydata
+                The data from the RSS feed.
+        """
+        self.read = False
+        self.title = entrydata['title']
+        self.published = entrydata['published']
+        self.url = entrydata['link']
+        if 'content' in entrydata:
+            self.content = entrydata['content']
         else:
             try:
                 self.content = util.getMainContent(self.url)
             except:
-                self.content = entry['summary']
+                self.content = entrydata['summary']
             
 
     def __eq__(self, other):
