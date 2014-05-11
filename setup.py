@@ -10,7 +10,7 @@ config = {
     'download_url': 'https://github.com/sildar/reallysimplesoftware.git',
     'author_email': 'sildar44@gmail.com',
     'version': '0.0.1',
-    'install_requires': ['nose'],
+    'install_requires': ['nose', 'requests', 'beautifulsoup4', 'feedparser'],
     'packages': ['reallysimplesoftware'],
     'scripts': [],
     'name': 'reallysimplesoftware'
