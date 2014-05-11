@@ -14,6 +14,9 @@ class NoTextException(Exception):
 
 
 def _isCode(text):
+    """
+    Predicts if the given text is composed of code
+    """
 
     codepieces = ['+=,' '==', 'jQuery', 'var']
 
@@ -23,6 +26,9 @@ def _isCode(text):
     return False
 
 def _isText(text, tagname='p'):
+    """
+    Predicts if the given text is actual natural language
+    """
     text = text.strip()
     text = re.sub(' +', ' ', text)
 
@@ -40,6 +46,9 @@ def _isText(text, tagname='p'):
     return False
 
 def getMainContent(url):
+    """
+    Extracts the text main content from an URL
+    """
     r = requests.get(url)
     data = r.text
 
