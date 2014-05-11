@@ -63,6 +63,9 @@ class Entry(object):
                 The data from the RSS feed.
         """
         self.read = False
+        self._fillEntry(entrydata)
+        
+    def _fillEntry(self, entrydata):
         self.title = entrydata['title']
         self.published = entrydata['published']
         self.url = entrydata['link']
@@ -73,7 +76,7 @@ class Entry(object):
                 self.content = util.getMainContent(self.url)
             except:
                 self.content = entrydata['summary']
-            
+
 
     def __eq__(self, other):
         sameTitle = self.title == other.title
