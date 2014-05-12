@@ -3,8 +3,13 @@
 
 import unittest
 
-import sys, os
+import sys
+import os
+
+# add root dir if we're on the test dir
 sys.path.insert(0, os.path.dirname('..'))
+# add src dir if we're on the root dir
+sys.path.insert(0, os.path.dirname('./reallysimplesoftware/'))
 
 from reallysimplesoftware import feedManager
 
