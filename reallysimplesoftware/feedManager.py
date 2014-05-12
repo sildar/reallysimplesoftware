@@ -10,11 +10,12 @@ import feedparser
 import sqlite3
 from reallysimplesoftware import util
 
+
 class RSSThread(object):
     """
     Represents a RSS thread.
     """
-    
+
     def __init__(self, url):
         """
         Reads a RSS feed and updates the thread entries.
@@ -27,26 +28,26 @@ class RSSThread(object):
         self.url = url
         self.entries = []
         feed = feedparser.parse(url)
-        
+
         self.name = feed['feed']['title']
         self.updateEntries(feed)
 
-
     def nicePrint(self):
         print(self.name)
-        
+
         for entry in self.entries:
             if not entry.read:
                 print("\t" + entry.title + '\t' + entry.published)
                 print("\t\t" + str(entry.content) + "\n\n")
 
     def updateEntries(self, feed):
-        if self.entries == None:
+        if self.entries is None:
             self.entries = feed['entries']
         else:
             for entry in feed['entries']:
-                if not entry in self.entries:
+                if entry not in self.entries:
                     self.entries.append(Entry(entry))
+
 
 class Entry(object):
     """
@@ -64,7 +65,7 @@ class Entry(object):
         """
         self.read = False
         self._fillEntry(entrydata)
-        
+
     def _fillEntry(self, entrydata):
         self.title = entrydata['title']
         self.published = entrydata['published']
@@ -77,38 +78,15 @@ class Entry(object):
             except:
                 self.content = entrydata['summary']
 
-
     def __eq__(self, other):
         sameTitle = self.title == other.title
         sameDate = self.published == other.published
-        return sameTitle and sameDate        
-        
+        return sameTitle and sameDate
 
 
 def main():
     thread = RSSThread("http://www.ogaming.tv/rss.xml")
-        
     thread.nicePrint()
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
