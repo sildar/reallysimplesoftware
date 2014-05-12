@@ -8,7 +8,7 @@
 
 import feedparser
 import sqlite3
-from reallysimplesoftware import util
+import util
 
 
 class RSSThread(object):
